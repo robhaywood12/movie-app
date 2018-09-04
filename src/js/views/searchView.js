@@ -5,7 +5,7 @@ export const getInput = () => elements.searchInput.value;
 export const renderResults = (titlesObj) => {
     //const titlesArray = objToArray(titlesObj);
     for (var i = 0; i < titlesObj.length; i++) {
-        console.log(titlesObj[i].Title);
+        //console.log(titlesObj[i].Title);
         renderMovieEntry(titlesObj[i]);
     }
 }

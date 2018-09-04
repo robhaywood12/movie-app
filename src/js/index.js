@@ -2,6 +2,7 @@
 import num from './test';
 import Search from './models/Search';
 import * as searchView from './views/searchView';
+import * as triviaView from './views/triviaView';
 import {elements} from './views/base';
 import Trivia from './models/Trivia';
 
@@ -34,6 +35,8 @@ const searchTest = async () => {
 
         // prepare UI for results
         searchView.clearResults();
+        //triviaView ? triviaView.clearResults() : "";
+        
 
         try {
             // search for movies
@@ -58,23 +61,58 @@ const controlTrivia = async () => {
     const id = window.location.hash.replace('#', '');
 
     if (id) {
-        // Prepare UI for changes
-
         // Create new trivia object
         state.trivia = new Trivia(id);
-    
+
+        // Prepare UI for changes
+        searchView.clearResults();
+        triviaView.clearResults();    
 
         // Get trivia data
         const x = await state.trivia.getTrivia(id);
 
-        // Render trivia
-        console.log(state.trivia.title);
-        console.log(state.trivia.trivia_count);
-        console.log(state.trivia.trivia);
-        //state.trivia.sayHi();
-        //console.log(x);
+        // Assign trivia data
+        const movieTitle = state.trivia.title;
+        const movieTrivia = state.trivia.trivia;
+
+        triviaView.renderTitle(movieTitle);
+
+        function getAndRenderRandomTrivia() {
+            let movieRandomListItem = state.trivia.getRandomListNum(movieTrivia);
+            let movieRandomItem = state.trivia.getTriviaByIndex(movieRandomListItem, movieTrivia);
+            triviaView.renderTriviaItem(movieRandomItem);
+        }
+
+        getAndRenderRandomTrivia();
+
+        // let movieRandomListItem = state.trivia.getRandomListNum(movieTrivia);
+        // let movieRandomItem = state.trivia.getTriviaByIndex(movieRandomListItem, movieTrivia);
+
+        // Render trivia on UI        
+        //triviaView.renderTitle(movieTitle);
+        //triviaView.renderTriviaItem(movieRandomItem);
+
+        elements.triviaList.addEventListener('click', event => {
+            const btn = event.target.closest('.next-button');
+            if (btn) {
+                triviaView.clearTrivia();
+                getAndRenderRandomTrivia();
+            }
+        })
 
     }
 }
 
+
 window.addEventListener('hashchange', controlTrivia);
+
+// const getRandomInt = (max) => {
+//     return Math.floor(Math.random() * Math.floor(max));
+// }
+
+// const getRandomNumber = () => {
+//     return (getRandomInt(3) + 1);
+// }
+
+
+
