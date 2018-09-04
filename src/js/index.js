@@ -52,17 +52,6 @@ elements.searchButton.addEventListener('click', event => {
     searchTest();
 });
 
-// const triviaTest = async () => {
-//     var triviaObject = new Trivia('tt0137523');
-//     try {
-//         await triviaObject.getTrivia();
-//         console.log(triviaObject);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-
-// triviaTest();
 
 const controlTrivia = async () => {
     // Get ID from url
@@ -79,10 +68,11 @@ const controlTrivia = async () => {
         const x = await state.trivia.getTrivia(id);
 
         // Render trivia
-        console.log(state.trivia);
-        console.log('^state trivia')
+        console.log(state.trivia.title);
+        console.log(state.trivia.trivia_count);
+        console.log(state.trivia.trivia);
         //state.trivia.sayHi();
-        console.log(x);
+        //console.log(x);
 
     }
 }
