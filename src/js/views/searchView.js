@@ -24,7 +24,8 @@ const renderMovieEntry = (movie) => {
                 <a class="movie-link" href="#${movie.imdbID}">
                     <div class="result-template">
                         <div class="panel-heading">
-                            <h3 class="movie-title-spacing">${movie.Title}</h3>
+                            <h3 class="movie-title-spacing">${movie.Title} (${movie.Year})
+                            </h3>
                         </div>
                     </div>
                 </a>

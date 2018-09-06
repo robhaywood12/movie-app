@@ -37,9 +37,19 @@ ul {
 }
 
 body {
-    background: url('/images/theater.jpg') no-repeat;
+    background-image: url('/images/theater.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+    background-color: black;
     
+}
+
+.bigFont {
+    font-family: 'Viga', sans-serif;
 }
 
 h1 {
@@ -110,7 +120,8 @@ input::-webkit-input-placeholder {
     }
 
 .factFont {
-    font-size: 1.4em;
+    font-size: 1.5em;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import apikeyclear from '../config';
+import {apikey} from '../config'
 
 export default class Search {
     constructor(query) {
@@ -8,7 +8,7 @@ export default class Search {
 
     async getMovies() {
         try {
-            const mov = await axios(`http://www.omdbapi.com/?apikey=thewdb&s=${this.query}`);
+            const mov = await axios(`http://www.omdbapi.com/?apikey=${apikey}&s=${this.query}`);
             // this is an OBJECT of search results
             this.titles = mov.data.Search;
         } catch (error) {

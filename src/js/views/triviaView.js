@@ -59,7 +59,7 @@ export const renderTitle = (triviaTitle) => {
     const markup = `
     <div class="col-lg-12 text-center v-center">
         <div class="container">
-            <h2>${triviaTitle}</h2>
+            <h2 class="bigFont">${triviaTitle}</h2>
         </div>
     </div>
     `;
