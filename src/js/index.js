@@ -3,31 +3,19 @@ import num from './test';
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import * as triviaView from './views/triviaView';
-import {elements} from './views/base';
+import {elements, renderLoader, clearLoader} from './views/base';
 import Trivia from './models/Trivia';
 
-// const searchTest = async () => {
-//     var searchObject = new Search('Sherlock');
-//     await searchObject.getMovies();
-//     console.log(searchObject.titles);
-//     searchView.renderResults(searchObject.titles);
-// }
-
-//searchTest();
-
-/** Global state of the app
- * - 
- * 
- * 
- */
 
 const state = {}
-
+window.location.hash = '';
 
 
 const searchTest = async () => {
+    window.location.hash = '';
     // 1) get query from view
     const query = searchView.getInput();
+    searchView.clearInput();
 
     if (query) {
         // new search object added
@@ -35,7 +23,8 @@ const searchTest = async () => {
 
         // prepare UI for results
         searchView.clearResults();
-        //triviaView ? triviaView.clearResults() : "";
+        triviaView.clearResults();
+        renderLoader(elements.movieList);
         
 
         try {
@@ -43,6 +32,7 @@ const searchTest = async () => {
             await state.search.getMovies();
 
             // render movies to page
+            clearLoader();
             searchView.renderResults(state.search.titles);
             //console.log(state.search);
         } catch (err) {
@@ -50,10 +40,6 @@ const searchTest = async () => {
         }
     }
 }
-
-elements.searchButton.addEventListener('click', event => {    
-    searchTest();
-});
 
 
 const controlTrivia = async () => {
@@ -66,8 +52,10 @@ const controlTrivia = async () => {
 
         // Prepare UI for changes
         searchView.clearResults();
-        triviaView.clearResults();    
+        triviaView.clearResults(); 
+        renderLoader(elements.triviaListContainer);   
 
+        try {
         // Get trivia data
         const x = await state.trivia.getTrivia(id);
 
@@ -83,14 +71,9 @@ const controlTrivia = async () => {
             triviaView.renderTriviaItem(movieRandomItem);
         }
 
+        clearLoader();
         getAndRenderRandomTrivia();
 
-        // let movieRandomListItem = state.trivia.getRandomListNum(movieTrivia);
-        // let movieRandomItem = state.trivia.getTriviaByIndex(movieRandomListItem, movieTrivia);
-
-        // Render trivia on UI        
-        //triviaView.renderTitle(movieTitle);
-        //triviaView.renderTriviaItem(movieRandomItem);
 
         elements.triviaList.addEventListener('click', event => {
             const btn = event.target.closest('.next-button');
@@ -99,20 +82,29 @@ const controlTrivia = async () => {
                 getAndRenderRandomTrivia();
             }
         })
-
+        
+        } catch (error) {
+            clearLoader();
+            triviaView.renderError();
+        }
     }
 }
 
 
 window.addEventListener('hashchange', controlTrivia);
 
-// const getRandomInt = (max) => {
-//     return Math.floor(Math.random() * Math.floor(max));
-// }
+elements.searchButton.addEventListener('click', event => { 
+    event.preventDefault();   
+    searchTest();
+});
 
-// const getRandomNumber = () => {
-//     return (getRandomInt(3) + 1);
-// }
+document.addEventListener('keypress', function(event) {
+    //event.preventDefault();
+    if (event.keyCode === 13 || event.which === 13) {
+        event.preventDefault();
+        elements.searchButton.click();
+    }
+});
 
 
 

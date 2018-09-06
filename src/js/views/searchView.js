@@ -2,31 +2,48 @@ import {elements} from './base';
 
 export const getInput = () => elements.searchInput.value;
 
+export const clearInput = () => elements.searchInput.value = "";
+
 export const renderResults = (titlesObj) => {
     //const titlesArray = objToArray(titlesObj);
-    for (var i = 0; i < titlesObj.length; i++) {
-        //console.log(titlesObj[i].Title);
-        renderMovieEntry(titlesObj[i]);
+    if (titlesObj) {
+        for (var i = 0; i < titlesObj.length; i++) {
+            //console.log(titlesObj[i].Title);
+            renderMovieEntry(titlesObj[i]);
+        }
+    } else {
+        renderNoResults();
     }
 }
 
 const renderMovieEntry = (movie) => {
     const markup = `
         <li>
-            
-                <div class="row">
-                    <div class="col-md-12">
-                    <a class="movie-link" href="#${movie.imdbID}">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="">${movie.Title}</h3>
-                            </div>
-                            <div class="panel-body">${movie.imdbID}</div>
+            <div class="container"> 
+                <div class="col-md-12">
+                <a class="movie-link" href="#${movie.imdbID}">
+                    <div class="result-template">
+                        <div class="panel-heading">
+                            <h3 class="movie-title-spacing">${movie.Title}</h3>
                         </div>
-                    </a>
                     </div>
+                </a>
                 </div>
+            </div>
             
+        </li>
+    `;
+    elements.movieList.insertAdjacentHTML('beforeend', markup);
+}
+
+const renderNoResults = () => {
+    const markup = `
+        <li>            
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>No results found!</h3>
+                </div>
+            </div>            
         </li>
     `;
     elements.movieList.insertAdjacentHTML('beforeend', markup);

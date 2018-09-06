@@ -1,0 +1,118 @@
+ul {
+    list-style-type:none;
+}
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+    /* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.center-block {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.movie-title-spacing {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+body {
+    background: url('/images/theater.jpg') no-repeat;
+    background-size: cover;
+    
+}
+
+h1 {
+    color: #FFB261;
+}
+
+.panel-custom {
+    background-color: black;
+    opacity: 0.75;
+    border: 0;
+    padding: 25px 50px 25px 25px;
+    
+}
+
+.result-template {
+    background-color: black;
+    opacity: 0.85;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(73, 73, 73);
+    border-radius: 15px;
+}
+
+h4 {
+    color: #FFB261;
+}
+
+.whiteFont {
+    color: #FFB261;
+    opacity: 1;
+}
+
+.btn-custom {
+    background-color: #030200;
+    color: #FFB261;
+}
+
+.btn {
+    border-color: rgb(73, 73, 73);
+}
+
+.container-full {
+    background-color: black;
+    opacity: 0.75
+}
+
+.black-bg {
+    background-color: black;
+    border-color: rgb(73, 73, 73)
+}
+
+input::-webkit-input-placeholder {
+    color: rgb(73, 73, 73) !important;
+    }
+     
+    input:-moz-placeholder { /* Firefox 18- */
+    color: rgb(73, 73, 73) !important;  
+    }
+     
+    input::-moz-placeholder {  /* Firefox 19+ */
+    color: rgb(73, 73, 73) !important;  
+    }
+     
+    input:-ms-input-placeholder {  
+    color: rgb(73, 73, 73) !important;  
+    }
+
+.factFont {
+    font-size: 1.4em;
+}
+
+a {
+    color: #FFB261;
+}

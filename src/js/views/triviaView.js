@@ -15,14 +15,41 @@ export const renderTrivia = (triviaData) => {
 }
 
 export const renderTriviaItem = (item) => {
-    // render result
+    if (item) {
+        // render result
+        const markup = `
+            <div class="row container center-block">
+                <div class="col-md-12 panel panel-custom">
+                        <p class="center-block whiteFont factFont">${item}</p>                   
+                </div>
+            <button class="btn btn-custom next-button pull-right">Next Fact</button> 
+            </div>                       
+            `;
+            elements.triviaList.insertAdjacentHTML('beforeend', markup);
+    } else {
+        renderNoResult();
+    }
+}
+
+const renderNoResult = () => {
     const markup = `
         <div class="row">
             <div class="col-md-12">
-                <h4>${item}</h4>
+                <h4>No trivia found!</h4>
             </div>
         </div>
-        <button class="next-button pull-right">Next Fact</button>
+        `;
+        elements.triviaList.insertAdjacentHTML('beforeend', markup);
+
+}
+
+export const renderError = () => {
+    const markup = `
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Error reading trivia data! Sorry :(</h4>
+            </div>
+        </div>
         `;
         elements.triviaList.insertAdjacentHTML('beforeend', markup);
 }
@@ -31,7 +58,9 @@ export const renderTriviaItem = (item) => {
 export const renderTitle = (triviaTitle) => {
     const markup = `
     <div class="col-lg-12 text-center v-center">
-        <h1>${triviaTitle}</h1>
+        <div class="container">
+            <h2>${triviaTitle}</h2>
+        </div>
     </div>
     `;
     elements.triviaListTitle.insertAdjacentHTML('afterbegin', markup);

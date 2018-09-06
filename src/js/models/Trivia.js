@@ -9,17 +9,21 @@ export default class Trivia {
     }
 
     getTrivia(id) {
-        var self = this;
-        return new Promise(function(resolve,reject){
-            imdbTrivia(id, function(err,data){
-                if(err !== null) return reject(err);
-                resolve(data);
+        try {
+            var self = this;
+            return new Promise(function(resolve,reject){
+                imdbTrivia(id, function(err,data){
+                    if(err !== null) return reject(err);
+                    resolve(data);
+                })
+            }).then(function(data) {
+                self.title = data.title;
+                self.trivia = data.trivia;
+                self.trivia_count = data.trivia_count;
             })
-        }).then(function(data) {
-            self.title = data.title;
-            self.trivia = data.trivia;
-            self.trivia_count = data.trivia_count;
-        })
+        } catch (error) {
+            console.log("oh noo charlie");
+        }  
 
         
     }
