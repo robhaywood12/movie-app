@@ -2,8 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 module.exports = {
     
     //target: 'node',
@@ -28,7 +26,6 @@ module.exports = {
             minify: true
         }),
 
-        new BundleAnalyzerPlugin()
 
     ],
     module: {
