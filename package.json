@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
-    "start": "node app.js",
+    "start": "node server.js",
     "heroku-postbuild": "webpack --mode production"
   },
   "author": "Joseph G",
