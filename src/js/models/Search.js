@@ -8,7 +8,7 @@ export default class Search {
 
     async getMovies() {
         try {
-            const mov = await axios(`http://www.omdbapi.com/?apikey=${apikey}&s=${this.query}`);
+            const mov = await axios(`https://www.omdbapi.com/?apikey=${apikey}&s=${this.query}`);
             // this is an OBJECT of search results
             this.titles = mov.data.Search;
         } catch (error) {
