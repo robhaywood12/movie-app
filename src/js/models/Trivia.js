@@ -19,9 +19,6 @@ export default class Trivia {
                 self.title = data.title;
                 self.trivia = data.trivia;
                 self.trivia_count = data.trivia_count;
-                console.log(data.title);
-                console.log(data.trivia_count);
-                console.log(data.trivia);
             })
         } catch (error) {
             console.log("oh noo charlie");

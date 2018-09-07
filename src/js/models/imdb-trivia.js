@@ -51,7 +51,6 @@ let scrape = function (url, options, cb) {
           if (onMobile) {
             results[index] = item.text().trim().replace(/\\/g, '');
           }
-          console.log("work");
         });
         
         
