@@ -22,7 +22,7 @@ let scrape = function (url, options, cb) {
 (function () {
   const imdbTrivia = (function () {    
     let imdbTrivia = function (movieId, cb) {
-      const baseUrl = `https://cors-anywhere.herokuapp.com/https://www.imdb.com/title`;
+      const baseUrl = `https://www.imdb.com/title`;
 
       scrape(baseUrl + '/' + movieId + '/trivia', function (err, jq) {
         if (err) {
