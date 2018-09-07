@@ -15,27 +15,28 @@ export const renderTrivia = (triviaData) => {
 }
 
 export const renderTriviaItem = (item) => {
-    if (item) {
-        // render result
-        const markup = `
-            <div class="row container center-block">
-                <div class="col-md-12 panel panel-custom">
-                        <p class="center-block whiteFont factFont">${item}</p>                   
-                </div>
-            <button class="btn btn-custom next-button pull-right">Next Fact</button> 
-            </div>                       
-            `;
-            elements.triviaList.insertAdjacentHTML('beforeend', markup);
-    } else {
-        renderNoResult();
-    }
+        if (item) {
+            // render result
+            const markup = `
+                <div class="row container center-block">
+                    <div class="col-md-12 panel panel-custom">
+                            <p class="center-block whiteFont factFont">${item}</p>                   
+                    </div>
+                <button class="btn btn-custom next-button pull-right">Next Fact</button> 
+                </div>                       
+                `;
+                elements.triviaList.insertAdjacentHTML('beforeend', markup);
+        } else {
+            renderNoResult();
+        }
+
 }
 
 const renderNoResult = () => {
     const markup = `
         <div class="row">
             <div class="col-md-12">
-                <h4>No trivia found!</h4>
+                <h4>No trivia found!..</h4>
             </div>
         </div>
         `;

@@ -29,14 +29,33 @@ let scrape = function (url, options, cb) {
           return cb(err);
         }
 
+        let onMobile = true;
+
         let movieTitle = jq('meta[property="og:title"]').attr('content');        
         let results = [];
 
         jq('div[class=sodatext]').each(function (index) {
           let item = jq(this);
-
           results[index] = item.text().trim().replace(/\\/g, '');
+          onMobile = false;
         });
+
+        if(results.length == 0 && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+          onMobile = true;
+        }
+
+
+
+        jq('div.drop-panel-content').each(function (index) {
+          let item = jq(this);
+          if (onMobile) {
+            results[index] = item.text().trim().replace(/\\/g, '');
+          }
+          console.log("work");
+        });
+        
+        
+
 
         return cb(null, {
           title: movieTitle,
