@@ -1,9 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
+    
     //target: 'node',
     node: {
         console: true,
@@ -22,8 +24,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/index.html'
-        })
+            template: './src/index.html',
+            minify: true
+        }),
+
+        new BundleAnalyzerPlugin()
+
     ],
     module: {
         rules: [
@@ -35,5 +41,37 @@ module.exports = {
                 },
             }
         ]
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+              vendor: {
+                chunks: "initial",
+                test: path.resolve(process.cwd(), "node_modules"),
+                name: "vendor",
+                enforce: true
+              }
+            }
+          },
+          minimizer: [
+            new UglifyJsPlugin({
+              uglifyOptions: {
+                sourceMap: true,
+                compress: {
+                  drop_console: true,
+                  conditionals: true,
+                  unused: true,
+                  comparisons: true,
+                  dead_code: true,
+                  if_return: true,
+                  join_vars: true,
+                  warnings: false
+                },
+                output: {
+                  comments: false
+                }
+              }
+            })
+          ]
     }
 }

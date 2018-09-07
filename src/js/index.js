@@ -1,5 +1,4 @@
 // Global app controller
-import num from './test';
 import Search from './models/Search';
 import * as searchView from './views/searchView';
 import * as triviaView from './views/triviaView';

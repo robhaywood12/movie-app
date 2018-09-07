@@ -1,4 +1,3 @@
-import axios from 'axios';
 //const imdbTrivia = require('./imdb-trivia');
 import imdbTrivia from './imdb-trivia';
 
